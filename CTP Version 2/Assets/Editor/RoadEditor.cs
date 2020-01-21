@@ -4,19 +4,23 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor (typeof (RoadSetup))]
-public class RoadEditor : Editor {
+public class RoadEditor : Editor
+{
     RoadSetup roadSetup;
 
-    public override void OnInspectorGUI () {
+    public override void OnInspectorGUI ()
+    {
         DrawDefaultInspector ();
-        if (GUILayout.Button ("Reset")) {
+        if (GUILayout.Button ("Reset"))
+        {
             roadSetup.Reset ();
             SceneView.RepaintAll();
         }
     }
 
     void OnSceneGUI () {
-        if (roadSetup.disableEditor) {
+        if (roadSetup.disableEditor)
+        {
             return;
         }
 
@@ -54,7 +58,8 @@ public class RoadEditor : Editor {
         }
     }
 
-    void OnEnable () {
+    void OnEnable ()
+    {
         roadSetup = (RoadSetup) target;
         roadSetup.Init ();
     }
