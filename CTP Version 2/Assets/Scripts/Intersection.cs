@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Intersection
+public struct Intersection //Gets a List of points adds and returns them 
 {
-	public List<Point> Points;
+	public List<Point> Points; 
 
 	public Intersection(List<Point> points)
 	{

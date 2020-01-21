@@ -207,6 +207,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1596074801636588, guid: 1efccf21b1379464a9fc5b6d6c809840, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4360489957764850, guid: 1efccf21b1379464a9fc5b6d6c809840, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -345,10 +349,8 @@ GameObject:
   m_Component:
   - component: {fileID: 768339956}
   - component: {fileID: 768339955}
-  - component: {fileID: 768339954}
   - component: {fileID: 768339953}
   - component: {fileID: 768339952}
-  - component: {fileID: 768339958}
   - component: {fileID: 768339957}
   m_Layer: 0
   m_Name: Camera
@@ -366,14 +368,6 @@ AudioListener:
   m_GameObject: {fileID: 768339951}
   m_Enabled: 1
 --- !u!124 &768339953
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768339951}
-  m_Enabled: 1
---- !u!92 &768339954
 Behaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -451,18 +445,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
---- !u!114 &768339958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768339951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301eca71255100647bb9bad1d5641921, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &783500639 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114287972180143912, guid: 1efccf21b1379464a9fc5b6d6c809840,
@@ -482,6 +464,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1927470439191578, guid: c9452662103dcb440b1f94bb15b7a74b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224019207189490042, guid: c9452662103dcb440b1f94bb15b7a74b,
         type: 3}
       propertyPath: m_LocalPosition.x

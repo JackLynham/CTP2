@@ -34,7 +34,7 @@ public class Generator : MonoBehaviour {
     private RoadNetwork roadNetwork;
 
     [HideInInspector] public bool currentlyPlacing;
-    private List<Building> addedBuildings = new List<Building>();
+    private List<Building> addedBuildings = new List<Building>();  //Adds building to new building list
     private Queue<Road> roadsToBuild = new Queue<Road>();
 
     private MeshFilter roadMeshFilter;
@@ -51,7 +51,7 @@ public class Generator : MonoBehaviour {
     private void Awake()
 	{
         instance = this;
-        roadNetwork = new RoadNetwork(100f, this);
+        roadNetwork = new RoadNetwork(100f, this); //Create a New road Network
         
 		ClearRoads();
     }
@@ -59,7 +59,7 @@ public class Generator : MonoBehaviour {
 	private void Start()
 	{
         roadWidth = 1f * roadScale;
-        intersectionOffset = .5f * roadScale;
+        intersectionOffset = .5f * roadScale;   //seting up the roads
 
     }
 
@@ -70,7 +70,7 @@ public class Generator : MonoBehaviour {
 			if(roadsToBuild.Count > 0)
 			{
                 Road currentRoad = roadsToBuild.Dequeue();
-                EvaluateRoad(currentRoad);
+                EvaluateRoad(currentRoad);   //Calls the evaluate road function
             }
 			else
 			{
@@ -81,7 +81,7 @@ public class Generator : MonoBehaviour {
 
 	public void Clear()
 	{
-        roadNetwork = new RoadNetwork(100f, this);
+        roadNetwork = new RoadNetwork(100f, this);   //Clears any list that has been made 
         ClearBuildings();
         ClearRoads();
         manualPoints.Clear();
@@ -89,7 +89,7 @@ public class Generator : MonoBehaviour {
         intersections.Clear();
     }
 
-	public void AddPoint(Vector3 _point)
+	public void AddPoint(Vector3 _point)  //Adds points then calls the draw fucntion
 	{
         manualPoints.Add(_point);
         TryDraw();
@@ -129,7 +129,7 @@ public class Generator : MonoBehaviour {
         Subdivide();
     }
 
-	public void Subdivide()
+	public void Subdivide() //Calls Subdivide fucntions in Road Network Class
 	{
         ClearBuildings();
         roadNetwork.AddCityCentre(manualPoints);
@@ -159,55 +159,64 @@ public class Generator : MonoBehaviour {
             if (side)
                 per *= -1;
 
-            for (int i = 0; i < 3; i++)
-            {
-                Vector2 roadOffset = per.normalized * (roadWidth  + Generator.Instance.buildingLength);
-                Vector2 tc = start + (dir * f) + roadOffset;
-
-                if (f - Generator.Instance.buildingWidth < 0 || f + Generator.Instance.buildingWidth > distance)
-                    continue;
-
-                Vector3 center = new Vector3(tc.x, 0, tc.y);
-
-                GameObject building = null;
-                float perlinVal = Mathf.PerlinNoise(center.x / 10f , center.y / 10f);
-
-                if(perlinVal < .25f)
-                {   
-                    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);   
-                } 
-                else if(perlinVal < .5f)
-                {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
-                } 
-                else if(perlinVal < .75f)
-                {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
-                } 
-                else
-                {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
-                }
-
-                building.transform.parent = buildingsParent.transform;
-                building.transform.RotateAround(center, Vector3.up, GetRotation(dir) - (side ? 180 : 0));
-                
-                Building buildingComp = building.AddComponent<Building>();
-                buildingComp.center = center;
-
-
-                if (CheckValidPlacement(buildingComp))
-                {
-                    addedBuildings.Add(buildingComp);
-                    break;
-                }
-                else
-                    GameObject.DestroyImmediate(building);
-            }
+            BuildingGen(start, dir, distance, side, f, per);
         }
-	}
+    }
 
-	public void ClearBuildings()
+    private void BuildingGen(Vector2 start, Vector2 dir, float distance, bool side, float f, Vector2 per)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            Vector2 roadOffset = per.normalized * (roadWidth + Generator.Instance.buildingLength);
+            Vector2 tc = start + (dir * f) + roadOffset;
+
+            if (f - Generator.Instance.buildingWidth < 0 || f + Generator.Instance.buildingWidth > distance)
+                continue;
+
+            Vector3 center = new Vector3(tc.x, 0, tc.y);
+
+            GameObject building = null;
+
+            //Generates Buildings
+
+            float seed = Random.Range(0, 100);
+            float perlinVal = Mathf.PerlinNoise(center.x / 10f + seed, center.y / 10f + seed);//*10
+
+            if (perlinVal < .25f)
+            {
+                building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
+            }
+            else if (perlinVal < .5f)
+            {
+                building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
+            }
+            else if (perlinVal < .75f)
+            {
+                building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
+            }
+            else
+            {
+                building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
+            }
+
+            building.transform.parent = buildingsParent.transform;
+            building.transform.RotateAround(center, Vector3.up, GetRotation(dir) - (side ? 180 : 0));
+
+            Building buildingComp = building.AddComponent<Building>();
+            buildingComp.center = center;
+
+
+            if (CheckValidPlacement(buildingComp))
+            {
+                addedBuildings.Add(buildingComp);
+                break;
+            }
+            else
+                GameObject.DestroyImmediate(building);
+        }
+    }
+
+    public void ClearBuildings()
 	{
         currentlyPlacing = false;
         roadsToBuild.Clear();
@@ -232,15 +241,15 @@ public class Generator : MonoBehaviour {
         }
     }
 
-	 private float GetRotation(Vector3 segDir)
+	 private float GetRotation(Vector3 segDir)                   //     Returns the angle in radians whose Tan is y/x.
 	{
-		float a1 = Mathf.Atan2 (segDir.x, segDir.y) * Mathf.Rad2Deg;
+		float a1 = Mathf.Atan2 (segDir.x, segDir.y) * Mathf.Rad2Deg;  
 		a1 += a1 < 0 ? 360 : 0;
 
 		return a1;
 	}
 
-    private bool CheckValidPlacement(Building building)
+    private bool CheckValidPlacement(Building building)  //Check the interections to see if it can be placed there
 	{
         if(addedBuildings.Count == 0)
         {
