@@ -1,0 +1,45 @@
+Ctp Notes
+
+Start with twol lines and split them to generate a grid of roads. 
+Every Split takes a random percent value which defines the road Sizes and Intersection
+I then calaculate the Left and right side of my Road and how many times i split.
+
+
+Ultimatly these form what our city Looks like 
+
+
+
+Road Class 
+Gets a start and an end point for each road returns distance and returns the end of roads.
+
+Point Class 
+ This class is used mainly to conver the postions into a vector 3 as well as the end postions of the roads 
+
+Intersection Class
+This class gets the list of points and checks if theres and intersection. 
+
+UI Class 
+Gneral UI Shit 
+
+- Drawing Roads
+In my update loop im getting the mouse postion and saving the point i click as the postion 
+where roads need to be drawn 
+
+
+Road Network 
+Get length of exsiting street which we calculate using start and end point plus random
+Then I Calculate left and right by getting the split 
+perpendicular points (at an angle of 90° to a given line, plane, or surface or to the ground.) 
+and use them to make a new road.
+
+Next we check if any new roads to be placed are intersecting with any exsiting road if they do check 
+intersetion points to avoid odd behaviour. 
+
+We then have some Algorthyims which is one of the links. 
+
+-Add City Center 
+Draws a road for every two points as a road needs start and end point
+
+
+Generator 
+
