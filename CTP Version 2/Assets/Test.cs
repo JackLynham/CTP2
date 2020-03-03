@@ -15,9 +15,9 @@ public class Test : MonoBehaviour
         
         for (int index = 0; index < Generator.Instance.roads.Count; index++)
         {
-            Debug.Log("FuckYour mum ");
-            //colliderItem = collidersObj[index];
-            colliderItem.enabled = false;
+            ////Debug.Log("FuckYour mum ");
+            ////colliderItem = collidersObj[index];
+            //colliderItem.enabled = false;
 
         }
 

@@ -16,7 +16,11 @@ public class Generator : MonoBehaviour {
     public float roadTiling;
     public Material roadMaterial;
     public Material intersectionMaterial;
-    public Test test;
+
+    public GameObject topLeft;
+    public GameObject topRight;
+    public GameObject bottomLeft; 
+    public GameObject bottomRight;
 
     //Building Stuff 
     public Transform buildingsParent;
@@ -193,9 +197,21 @@ public class Generator : MonoBehaviour {
 
 
 
-            if (transform.position.x >= 1)
-            {
+            //if (transform.position.x >= 1)
+            //{
 
+            //    if (perlinVal < .55f)
+            //    {
+            //        building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
+            //    }
+            //    else
+            //    {
+            //        building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
+            //    }
+            //}
+
+             if(topRight.transform.position.x >= 100  )
+            {
                 if (perlinVal < .55f)
                 {
                     building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
@@ -206,39 +222,43 @@ public class Generator : MonoBehaviour {
                 }
             }
 
-            if (transform.position.x >= 0)
+            if (building.transform.position.x <=0 )
             {
                 if (perlinVal < .55f)
                 {
                     building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
+                   
                 }
                 else
                 {
                     building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
+                  
                 }
             }
-                //if (perlinVal < .25f)
-                //{
-                //    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
-                //}
-                //else if (perlinVal < .5f)
-                //{
-                //    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
-                //}
-                //else if (perlinVal < .75f)
-                //{
-                //    building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
-                //}
-                //else
-                //{
-                //    building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
-                //}
+
+          
+            //if (perlinVal < .25f)
+            //{
+            //    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
+            //}
+            //else if (perlinVal < .5f)
+            //{
+            //    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
+            //}
+            //else if (perlinVal < .75f)
+            //{
+            //    building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
+            //}
+            //else
+            //{
+            //    building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
+            //}
 
                 building.transform.parent = buildingsParent.transform;
                 building.transform.RotateAround(center, Vector3.up, GetRotation(dir) - (side ? 180 : 0));
 
-                Building buildingComp = building.AddComponent<Building>();
-                buildingComp.center = center;
+               Building buildingComp = building.AddComponent<Building>();
+               buildingComp.center = center;
 
 
                 if (CheckValidPlacement(buildingComp))
@@ -372,6 +392,19 @@ public class Generator : MonoBehaviour {
         AddRoadMesh(_road);
 
         addedRoads.Add(_road);
+       // GameObject Road = null;
+       // Road = new GameObject("Road");
+       // Road.transform.parent = roadParent.transform;
+       //// Road.transform.position == 
+
+
+        //building.transform.RotateAround(center, Vector3.up, GetRotation(dir) - (side ? 180 : 0));
+
+      //  Roads roadTest = Road.AddComponent<Roads>();
+       // roadTest.c;
+      //  Building buildingComp = building.AddComponent<Building>();
+     //   buildingComp.center = center;
+
     }
 
 	public void AddIntersection(Intersection inter)
