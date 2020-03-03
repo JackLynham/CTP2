@@ -6,7 +6,7 @@ using System.Linq;
 public class Generator : MonoBehaviour {
 
     //Road Stuff
-    public Transform roadParent;
+  //  public GameObject roadParent;
     public Transform intersectionParent;
     public float minRoadLength;
     public float maxRoadLength;
@@ -16,6 +16,7 @@ public class Generator : MonoBehaviour {
     public float roadTiling;
     public Material roadMaterial;
     public Material intersectionMaterial;
+    public Test test;
 
     //Building Stuff 
     public Transform buildingsParent;
@@ -26,7 +27,7 @@ public class Generator : MonoBehaviour {
     static Generator instance;
 	public static Generator Instance{ get { return instance; } }
 
-    private List<Roads> roads = new List<Roads>();
+    public  List<Roads> roads = new List<Roads>();
     private List<Intersection> intersections = new List<Intersection>();
 
     private List<Vector3> manualPoints = new List<Vector3>();
@@ -44,7 +45,7 @@ public class Generator : MonoBehaviour {
     private MeshRenderer intersectionMeshRenderer;
 
     private BoxCollider roadBoxCollider;
-    private Rigidbody roadRigidbody;
+   // private Rigidbody roadRigidbody;
 
     private float roadWidth;
     private float intersectionOffset;
@@ -90,6 +91,7 @@ public class Generator : MonoBehaviour {
         manualPoints.Clear();
         roads.Clear();
         intersections.Clear();
+       
     }
 
 	public void AddPoint(Vector3 _point)  //Adds points then calls the draw fucntion
@@ -108,6 +110,7 @@ public class Generator : MonoBehaviour {
         for (int i = 0; i < roadNetwork.Roads.Count; i++)
 		{
             AddRoads(roadNetwork.Roads[i]);
+            GameObject test = new GameObject("Road");
         }
 
         for (int i = 0; i < roadNetwork.Intersections.Count; i++)
@@ -166,6 +169,8 @@ public class Generator : MonoBehaviour {
         }
     }
 
+
+    
     private void BuildingGen(Vector2 start, Vector2 dir, float distance, bool side, float f, Vector2 per)
     {
         for (int i = 0; i < 3; i++)
@@ -185,39 +190,57 @@ public class Generator : MonoBehaviour {
             float seed = Random.Range(0, 100);
             float perlinVal = Mathf.PerlinNoise(center.x / 10f + seed, center.y / 10f + seed);
 
+
+            if (test.A == true)
+            {
+                if (perlinVal < .55f)
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
+                }
+                else
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
+                }
+            }
+
+            if (test.A == false)
+            {
+                if (perlinVal < .25f)
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
+                }
+                else if (perlinVal < .5f)
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
+                }
+                else if (perlinVal < .75f)
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
+                }
+                else
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
+                }
+
+                building.transform.parent = buildingsParent.transform;
+                building.transform.RotateAround(center, Vector3.up, GetRotation(dir) - (side ? 180 : 0));
+
+                Building buildingComp = building.AddComponent<Building>();
+                buildingComp.center = center;
+
+
+                if (CheckValidPlacement(buildingComp))
+                {
+                    addedBuildings.Add(buildingComp);
+                    break;
+                }
+                else
+                    GameObject.DestroyImmediate(building);
+
+            }
             
-
-            if (perlinVal < .25f)
-            {
-                building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
-            }
-            else if (perlinVal < .5f)
-            {
-                building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
-            }
-            else if (perlinVal < .75f)
-            {
-                building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
-            }
-            else
-            {
-                building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
-            }
-
-            building.transform.parent = buildingsParent.transform;
-            building.transform.RotateAround(center, Vector3.up, GetRotation(dir) - (side ? 180 : 0));
-
-            Building buildingComp = building.AddComponent<Building>();
-            buildingComp.center = center;   
-
-
-            if (CheckValidPlacement(buildingComp))
-            {
-                addedBuildings.Add(buildingComp);
-                break;
-            }
-            else
-                GameObject.DestroyImmediate(building);
+                
+              
         }
     }
 
@@ -309,12 +332,19 @@ public class Generator : MonoBehaviour {
         addedRoads.Clear();
         addedIntersections.Clear();
 
-        roadMeshFilter = roadParent.gameObject.GetComponent<MeshFilter>();
+        //GameObject test = new GameObject("Road");
+
+        //roadMeshFilter = test.AddComponent<MeshFilter>();
+        
+
+        //roadMeshFilter = roadParent.gameObject.GetComponent<MeshFilter>();
         roadMeshFilter.mesh = new Mesh();
+        
 
 
+       // roadMeshRenderer = roadParent.gameObject.GetComponent<MeshRenderer>();
+       //roadMeshRenderer = test.AddComponent<MeshRenderer>();
 
-        roadMeshRenderer = roadParent.gameObject.GetComponent<MeshRenderer>();
         roadMeshRenderer.material = roadMaterial;
 
         intersectionMeshFilter = intersectionParent.gameObject.GetComponent<MeshFilter>();

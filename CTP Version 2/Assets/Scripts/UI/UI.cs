@@ -109,6 +109,7 @@ public class UI : MonoBehaviour {
         if (Input.GetMouseButtonDown(1))
         {
             generator.AddPoint(mousePos);
+           
         }
     }
 }

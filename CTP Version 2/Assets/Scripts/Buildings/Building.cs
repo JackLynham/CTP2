@@ -14,7 +14,7 @@ public class Building : MonoBehaviour
 
     public bool Intersects(Building building)
 	{
-        //  return collider != null && collider.bounds.Intersects(building.collider.bounds);
-        return true;
+        return collider != null && collider.bounds.Intersects(building.collider.bounds);
+        
     }
 }

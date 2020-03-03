@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 95370314007903440}
   - component: {fileID: 6609429690276079787}
   - component: {fileID: 8243956718480171109}
-  - component: {fileID: 4421797247475765742}
   m_Layer: 0
   m_Name: SizeA
   m_TagString: Untagged
@@ -83,18 +82,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4421797247475765742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1528912307071510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 306b9ca07367c994dae609c0847b4850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1979101096492374
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d46d9345f7ee5b34bb779715b85fb791, type: 2}
+  - {fileID: 2100000, guid: d1d1bcb7b229a68459b2891fff443e1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
