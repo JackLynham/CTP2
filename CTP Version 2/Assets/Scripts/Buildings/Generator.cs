@@ -6,7 +6,7 @@ using System.Linq;
 public class Generator : MonoBehaviour {
 
     //Road Stuff
-  //  public GameObject roadParent;
+   public GameObject roadParent;
     public Transform intersectionParent;
     public float minRoadLength;
     public float maxRoadLength;
@@ -110,7 +110,7 @@ public class Generator : MonoBehaviour {
         for (int i = 0; i < roadNetwork.Roads.Count; i++)
 		{
             AddRoads(roadNetwork.Roads[i]);
-            GameObject test = new GameObject("Road");
+            //GameObject test = new GameObject("Road");
         }
 
         for (int i = 0; i < roadNetwork.Intersections.Count; i++)
@@ -191,29 +191,24 @@ public class Generator : MonoBehaviour {
             float perlinVal = Mathf.PerlinNoise(center.x / 10f + seed, center.y / 10f + seed);
 
 
-            if (test.A == true)
+
+
+            if (transform.position.x >= 1)
             {
+
                 if (perlinVal < .55f)
                 {
                     building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
                 }
                 else
                 {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
+                    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
                 }
             }
 
-            if (test.A == false)
+            if (transform.position.x >= 0)
             {
-                if (perlinVal < .25f)
-                {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
-                }
-                else if (perlinVal < .5f)
-                {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
-                }
-                else if (perlinVal < .75f)
+                if (perlinVal < .55f)
                 {
                     building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
                 }
@@ -221,6 +216,23 @@ public class Generator : MonoBehaviour {
                 {
                     building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
                 }
+            }
+                //if (perlinVal < .25f)
+                //{
+                //    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
+                //}
+                //else if (perlinVal < .5f)
+                //{
+                //    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
+                //}
+                //else if (perlinVal < .75f)
+                //{
+                //    building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
+                //}
+                //else
+                //{
+                //    building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
+                //}
 
                 building.transform.parent = buildingsParent.transform;
                 building.transform.RotateAround(center, Vector3.up, GetRotation(dir) - (side ? 180 : 0));
@@ -241,7 +253,7 @@ public class Generator : MonoBehaviour {
             
                 
               
-        }
+        
     }
 
     public void ClearBuildings()
@@ -337,12 +349,12 @@ public class Generator : MonoBehaviour {
         //roadMeshFilter = test.AddComponent<MeshFilter>();
         
 
-        //roadMeshFilter = roadParent.gameObject.GetComponent<MeshFilter>();
+        roadMeshFilter = roadParent.gameObject.GetComponent<MeshFilter>();
         roadMeshFilter.mesh = new Mesh();
         
 
 
-       // roadMeshRenderer = roadParent.gameObject.GetComponent<MeshRenderer>();
+        roadMeshRenderer = roadParent.gameObject.GetComponent<MeshRenderer>();
        //roadMeshRenderer = test.AddComponent<MeshRenderer>();
 
         roadMeshRenderer.material = roadMaterial;
