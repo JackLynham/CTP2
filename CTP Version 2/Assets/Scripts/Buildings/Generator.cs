@@ -174,10 +174,10 @@ public class Generator : MonoBehaviour {
     }
 
 
-    
+
     private void BuildingGen(Vector2 start, Vector2 dir, float distance, bool side, float f, Vector2 per)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 1; i++)
         {
             Vector2 roadOffset = per.normalized * (roadWidth + Generator.Instance.buildingLength);
             Vector2 tc = start + (dir * f) + roadOffset;
@@ -195,81 +195,72 @@ public class Generator : MonoBehaviour {
             float perlinVal = Mathf.PerlinNoise(center.x / 10f + seed, center.y / 10f + seed);
 
 
-
-
-            //if (transform.position.x >= 1)
+            bool a = false;
+            if(!a)
+            {
+                building = Instantiate(Instance.buildingPrefabs[4], center, Quaternion.identity);
+                a = true;
+            }
+           
+            
+            //if (!a)
             //{
-
             //    if (perlinVal < .55f)
             //    {
             //        building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
+            //        a = true;
             //    }
             //    else
             //    {
             //        building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
+            //        a = true;
             //    }
             //}
 
-             if(topRight.transform.position.x >= 100  )
+
+            //if (building.transform.position.x <= 0)
+            //{
+            if (perlinVal < .55f && building.transform.position.x <= 0)
             {
-                if (perlinVal < .55f)
-                {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
-                }
-                else
-                {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
-                }
-            }
+                building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
 
-            if (building.transform.position.x <=0 )
+            }
+            else if (perlinVal > .55f && building.transform.position.x >= 0)
             {
-                if (perlinVal < .55f)
-                {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
-                   
-                }
-                else
-                {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
-                  
-                }
-            }
-
-          
-            //if (perlinVal < .25f)
-            //{
-            //    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
-            //}
-            //else if (perlinVal < .5f)
-            //{
-            //    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
-            //}
-            //else if (perlinVal < .75f)
-            //{
-            //    building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
-            //}
-            //else
-            //{
-            //    building = Instantiate(Generator.Instance.buildingPrefabs[3], center, Quaternion.identity);
-            //}
-
-                building.transform.parent = buildingsParent.transform;
-                building.transform.RotateAround(center, Vector3.up, GetRotation(dir) - (side ? 180 : 0));
-
-               Building buildingComp = building.AddComponent<Building>();
-               buildingComp.center = center;
-
-
-                if (CheckValidPlacement(buildingComp))
-                {
-                    addedBuildings.Add(buildingComp);
-                    break;
-                }
-                else
-                    GameObject.DestroyImmediate(building);
+                building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
 
             }
+
+            //}
+
+            //if (building.transform.position.x >= 0)
+            //{
+            //    if (perlinVal < .55f)
+            //    {
+            //        building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
+
+            //    }
+            //    else
+            //    {
+            //        building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
+
+
+            building.transform.parent = buildingsParent.transform;
+            building.transform.RotateAround(center, Vector3.up, GetRotation(dir) - (side ? 180 : 0));
+
+            Building buildingComp = building.AddComponent<Building>();
+            buildingComp.center = center;
+
+
+            if (CheckValidPlacement(buildingComp))
+            {
+                addedBuildings.Add(buildingComp);
+                break;
+            }
+            else
+                GameObject.DestroyImmediate(building);
+
+        }
             
                 
               

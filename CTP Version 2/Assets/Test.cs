@@ -10,16 +10,16 @@ public class Test : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-       // Collider[] collidersObj = Generator.Instance.roadParent.GetComponentsInChildren<Collider>();
+        //Collider[] collidersObj = Generator.Instance.roadParent.GetComponentsInChildren<Collider>();
 
-        
-        for (int index = 0; index < Generator.Instance.roads.Count; index++)
-        {
-            ////Debug.Log("FuckYour mum ");
-            ////colliderItem = collidersObj[index];
-            //colliderItem.enabled = false;
 
-        }
+        //for (int index = 0; index < Generator.Instance.roads.Count; index++)
+        //{
+        //    Debug.Log("FuckYour mum ");
+        //    colliderItem = collidersObj[index];
+        //    colliderItem.enabled = false;
+
+        //}
 
 
 
