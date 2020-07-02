@@ -10,7 +10,7 @@ public class Deleteme : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 }

@@ -221,26 +221,61 @@ public class Generator : MonoBehaviour {
             //D2
             else if (perlinVal < .2f && building.transform.position.x <= -120 && building.transform.position.x > -160)
             {
-                if (perlinVal < .125f)
+                if (perlinVal < .13f)
                 {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
+
+                    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
                     building.transform.parent = District2Parent.transform;
                 }
-                if (perlinVal < .15f)
+
+                if (perlinVal < .16f && perlinVal > .13)
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[8], center, Quaternion.identity);
+                    building.transform.parent = District2Parent.transform;
+                }
+                if (perlinVal < .2f && perlinVal > .16f)
                 {
                     building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
                     building.transform.parent = District2Parent.transform;
 
                 }
 
+                else
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
+                }
+
             }
-            ////D3
-            //else if (perlinVal <.3f && building.transform.position.x <= -80 && building.transform.position.x > -120)
-            //{
-            //    building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
+            //D3
+            else if (perlinVal < .3f && building.transform.position.x <= -80 && building.transform.position.x > -120)
+            {
 
-            //}
+                if (perlinVal < .23f)
+                {
 
+                    building = Instantiate(Generator.Instance.buildingPrefabs[8], center, Quaternion.identity);
+                    building.transform.parent = District2Parent.transform;
+                }
+
+                if (perlinVal < .26f && perlinVal > .23)
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
+                    building.transform.parent = District2Parent.transform;
+                }
+                if (perlinVal < .3f && perlinVal > .26f)
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
+                    building.transform.parent = District2Parent.transform;
+
+                }
+
+                else
+                {
+                    building = Instantiate(Generator.Instance.buildingPrefabs[1], center, Quaternion.identity);
+                }
+
+            }
+            
             //D4
             //else if (perlinVal < .4f && building.transform.position.x <= -40 && building.transform.position.x > -80)
             //{
@@ -282,7 +317,7 @@ public class Generator : MonoBehaviour {
 
             }
 
-            else building = Instantiate(Generator.Instance.buildingPrefabs[8], center, Quaternion.identity);
+           // else building = Instantiate(Generator.Instance.buildingPrefabs[4], center, Quaternion.identity);
 
 
             building.transform.parent = buildingsParent.transform;
