@@ -1895,6 +1895,8 @@ MonoBehaviour:
   - {fileID: 193488, guid: ed8ca91ea98dcb54397b4145af6c0b2e, type: 3}
   - {fileID: 145378, guid: 955bf00fba2fee14696800975b5622e5, type: 3}
   - {fileID: 100316, guid: b00208f06b04b2447af23a7247883af2, type: 3}
+  - {fileID: 1084955103585372, guid: f83757c36ce3e664dbe7d3a8cd433d43, type: 3}
+  - {fileID: 1752698023425478, guid: e444245e7641d3a43be14626c13dddbf, type: 3}
   roads: []
   currentlyPlacing: 0
 --- !u!114 &114289254528404461
