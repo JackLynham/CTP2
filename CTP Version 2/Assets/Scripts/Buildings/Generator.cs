@@ -217,15 +217,88 @@ public class Generator : MonoBehaviour {
             //    building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
 
             //}
-
+            #region District 2
             //Distict 2
-            if ( perlinVal <1f )
+            if (perlinVal < 1f)
             {
-                if (perlinVal < 5)
+
+                if (perlinVal < .15)
                 {
-                    if (building.transform.position.x <= -120 && building.transform.position.x > -160)
+                    if (building.transform.position.x <= -40 && building.transform.position.x > -160)
+                    {
+
+
+                        building = Instantiate(Instance.buildingPrefabs[3], center, Quaternion.identity);
+                        building.transform.parent = District2Parent.transform;
+
+                        Building buildingComp3 = building.AddComponent<Building>();
+                        buildingComp3.center = center;
+
+                        if (CheckValidPlacement(buildingComp3))
+                        {
+                            addedBuildings.Add(buildingComp3);
+                            break;
+
+                        }
+                        else
+                            GameObject.Destroy(building);
+                    }
+                }
+
+
+                if (perlinVal < .3f && perlinVal > .15f)
+                {
+                    if (building.transform.position.x <= -40 && building.transform.position.x > -160)
+                    {
+                        building = Instantiate(Instance.buildingPrefabs[2], center, Quaternion.identity);
+
+                        building.transform.parent = District2Parent.transform;
+
+                        Building buildingComp2 = building.AddComponent<Building>();
+                        buildingComp2.center = center;
+
+                        if (CheckValidPlacement(buildingComp2))
+                        {
+                            addedBuildings.Add(buildingComp2);
+                            break;
+
+                        }
+                        else
+                            GameObject.Destroy(building);
+                    }
+
+                }
+
+                if (perlinVal < .45f && perlinVal > .3f)
+                {
+                    if (building.transform.position.x <= -40 && building.transform.position.x > -160)
+                    {
+                        building = Instantiate(Instance.buildingPrefabs[1], center, Quaternion.identity);
+
+                        building.transform.parent = District2Parent.transform;
+
+                        Building buildingComp2 = building.AddComponent<Building>();
+                        buildingComp2.center = center;
+
+                        if (CheckValidPlacement(buildingComp2))
+                        {
+                            addedBuildings.Add(buildingComp2);
+                            break;
+
+                        }
+                        else
+                            GameObject.Destroy(building);
+                    }
+
+                }
+
+                if (perlinVal < .6 && perlinVal > .45f)
+                {
+                    if (building.transform.position.x <= -40 && building.transform.position.x > -160)
                     {
                         building = Instantiate(Instance.buildingPrefabs[6], center, Quaternion.identity);
+
+
                         building.transform.parent = District2Parent.transform;
 
                         Building buildingComp2 = building.AddComponent<Building>();
@@ -242,17 +315,42 @@ public class Generator : MonoBehaviour {
                     }
 
 
-
                 }
 
-                    if (perlinVal >.5f)
+                if (perlinVal < .75f && perlinVal > .6f)
                 {
-                    building = Instantiate(Generator.Instance.buildingPrefabs[5], center, Quaternion.identity);
-                    building.transform.parent = District2Parent.transform;
+                    if (building.transform.position.x <= -40 && building.transform.position.x > -160)
+                    {
+                        building = Instantiate(Instance.buildingPrefabs[7], center, Quaternion.identity);
+
+
+                        building.transform.parent = District2Parent.transform;
+
+                        Building buildingComp2 = building.AddComponent<Building>();
+                        buildingComp2.center = center;
+
+                        if (CheckValidPlacement(buildingComp2))
+                        {
+                            addedBuildings.Add(buildingComp2);
+                            break;
+
+                        }
+                        else
+                            GameObject.Destroy(building);
+                    }
                 }
 
+                if (perlinVal > .75f)
+                {
+                    if (building.transform.position.x <= -40 && building.transform.position.x > -160)
+                    {
+                        building = Instantiate(Generator.Instance.buildingPrefabs[5], center, Quaternion.identity);
 
-             
+
+                        building.transform.parent = District2Parent.transform;
+                    }
+                }
+
                 building.transform.RotateAround(center, Vector3.up, GetRotation(dir) - (side ? 180 : 0));
 
                 Building buildingComp1 = building.AddComponent<Building>();
@@ -264,37 +362,23 @@ public class Generator : MonoBehaviour {
                     break;
                 }
                 else
-                    GameObject.Destroy (building);
+                    GameObject.Destroy(building);
+            }
+            #endregion 
 
-              
+
+
+
+
+           // D3
+            else if (perlinVal < 1f )
+                //building.transform.position.x <= -80 && building.transform.position.x > -120
+            {
+
+
 
             }
-            //D3
-            //else if (perlinVal < .3f && building.transform.position.x <= -80 && building.transform.position.x > -120)
-            //{
 
-            //    if (perlinVal < .23f)
-            //    {
-
-            //        building = Instantiate(Generator.Instance.buildingPrefabs[8], center, Quaternion.identity);
-            //        building.transform.parent = District2Parent.transform;
-            //    }
-
-            //    if (perlinVal < .26f && perlinVal > .23)
-            //    {
-            //        building = Instantiate(Generator.Instance.buildingPrefabs[0], center, Quaternion.identity);
-            //        building.transform.parent = District2Parent.transform;
-            //    }
-            //    if (perlinVal < .3f && perlinVal > .26f)
-            //    {
-            //        building = Instantiate(Generator.Instance.buildingPrefabs[2], center, Quaternion.identity);
-            //        building.transform.parent = District2Parent.transform;
-
-            //    }
-
-
-            //}
-            
             //D4
             //else if (perlinVal < .4f && building.transform.position.x <= -40 && building.transform.position.x > -80)
             //{
@@ -321,7 +405,7 @@ public class Generator : MonoBehaviour {
             ////D7
             //else if (perlinVal < .7f && building.transform.position.x <= 80 && building.transform.position.x > 40)
             //{
-             
+
 
             //}
 
