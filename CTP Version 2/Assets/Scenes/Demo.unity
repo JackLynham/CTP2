@@ -285,13 +285,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768339951}
-  m_LocalRotation: {x: 0.70357454, y: 0.17965552, z: -0.19141409, w: 0.66035396}
-  m_LocalPosition: {x: 0, y: 321, z: 0}
+  m_LocalRotation: {x: 0.6208851, y: 0.19826692, z: -0.16636568, w: 0.73994213}
+  m_LocalPosition: {x: 0, y: 250, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 93.63, y: 30.439001, z: 0}
+  m_LocalEulerAnglesHint: {x: 80, y: 30, z: 0}
 --- !u!1 &1167519357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,6 +1897,20 @@ MonoBehaviour:
   - {fileID: 100316, guid: b00208f06b04b2447af23a7247883af2, type: 3}
   - {fileID: 1084955103585372, guid: f83757c36ce3e664dbe7d3a8cd433d43, type: 3}
   - {fileID: 1752698023425478, guid: e444245e7641d3a43be14626c13dddbf, type: 3}
+  - {fileID: 8642877231320890501, guid: f12b67e6e1df232478cb8dc6491839a8, type: 3}
+  - {fileID: 447528267966770757, guid: 6e2f98a69a2b8424e8c05c8fff53be81, type: 3}
+  - {fileID: 8218931436318924833, guid: 04e1c8b7a413d534580e5e0068a3cb2d, type: 3}
+  - {fileID: 5075512208572365287, guid: 0e2954587632fbd44944d3f08c4b95f5, type: 3}
+  - {fileID: 5732255631635353100, guid: 483e78a91dbd68540a891fb00b22d8e9, type: 3}
+  - {fileID: 686388834731046106, guid: cb6682ec9ca61c04f94343f239e56218, type: 3}
+  - {fileID: 141268, guid: b3d3a7ba5f4d42943920370ae1696723, type: 3}
+  - {fileID: 147108, guid: 3d01ef65dd7df27469c08a5faaf917bd, type: 3}
+  - {fileID: 4421628013129009144, guid: 37683549792588c40b3bc0f15747a0ca, type: 3}
+  - {fileID: 7330041226717583856, guid: 54cc711f7e5f90540bd2bcacd8410cbc, type: 3}
+  - {fileID: 6045564238020482890, guid: 8865e2535de2be5488e9ec62e101d126, type: 3}
+  - {fileID: 8364157874787404603, guid: f3aec37a746b16d41a6e02400abc63c1, type: 3}
+  - {fileID: 686388834731046106, guid: cb6682ec9ca61c04f94343f239e56218, type: 3}
+  - {fileID: 686388834731046106, guid: cb6682ec9ca61c04f94343f239e56218, type: 3}
   roads: []
   currentlyPlacing: 0
 --- !u!114 &114289254528404461
